@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.CommentMapper">
+    <!--批量删除-->
+    <delete id="deleteByBlogId">
+        delete
+        from comment
+        where blog_id in
+        <foreach collection="ids" item="blogId" separator="," open="(" close=")">
+            #{blogId}
+        </foreach>
+    </delete>
+</mapper>
